@@ -1,3 +1,9 @@
-def on_forever():
+def on_press_power():
     pass
-basic.forever(on_forever)
+maqueenIR.on_press_event(RemoteButton.POWER, on_press_power)
+
+speed = 255
+time = 4.3 * Math.PI
+while True:
+    maqueen.motor_run(maqueen.Motors.ALL, maqueen.Dir.CW, speed)
+    time = 0
