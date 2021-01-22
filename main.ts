@@ -1,3 +1,3 @@
-basic.forever(function () {
+maqueenIR.onPressEvent(RemoteButton.Power, function () {
 	
 })
