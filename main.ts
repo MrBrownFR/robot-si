@@ -5,5 +5,8 @@ while (time < 100 * 60 / 1155) {
 }
 maqueen.motorStop(maqueen.Motors.All)
 basic.forever(function () {
+    basic.showString("STONKS")
+})
+basic.forever(function () {
     time = control.millis() * 1000
 })
