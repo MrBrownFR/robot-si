@@ -4,6 +4,14 @@ Ceci est le GitHub pour le projet de 48h du meilleur groupe de SI. Vous trouvere
 Chaque partie du programme a sa branche dédiée. Vous pouvez proposer des modifications sur cette branche, puis demander une "Pull Request", pour que le code soit apporté à la branche principale. De plus, vous pouvez créer des "Issues", ce sont des petites notes qui me permettent de comprendre ce qui ne marche pas, et ce qui devrait être rajouté.
 Pour plus d'informations, demandez-moi !
 
+CODES :
+AVANCER : 64
+RECULER : 25
+GAUCHE : 7
+DROITE : 9
+STOP :21
+LANCEMENT PROGRAMME AUTO : 67
+
 > *Cette page est susceptible de changer*
 
 > Ouvrir cette page à [https://mrbrownfr.github.io/robot-si/](https://mrbrownfr.github.io/robot-si/)
