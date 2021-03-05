@@ -32,9 +32,28 @@ function backward () {
         `)
 }
 function auto () {
-    forward()
-    basic.pause(Math.floor(100 * 60 / 1155 * 1000))
-    maqueen.motorStop(maqueen.Motors.All)
+    if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+        forward()
+    } else {
+        if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
+            left(1)
+            if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
+                left(1)
+            }
+        } else {
+            if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+                right(1)
+                if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
+                    right(1)
+                }
+                if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+                    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 255)
+                } else {
+                    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+                }
+            }
+        }
+    }
 }
 maqueen.IR_callbackUser(function (message) {
     if (message == 64) {
