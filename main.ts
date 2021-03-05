@@ -32,24 +32,30 @@ function backward () {
         `)
 }
 function auto () {
-    if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
-        forward()
-    } else {
-        if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
-            left(1)
-            if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
-                left(1)
-            }
+    while (true) {
+        if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+            forward()
         } else {
-            if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+            if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 0 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
                 right(1)
+                basic.pause(50)
                 if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
-                    right(1)
+                    forward()
                 }
+            } else {
                 if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
-                    maqueen.motorRun(maqueen.Motors.M1, maqueen.Dir.CW, 255)
-                } else {
-                    maqueen.motorRun(maqueen.Motors.M2, maqueen.Dir.CW, 0)
+                    left(1)
+                    basic.pause(50)
+                    if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 1) {
+                        forward()
+                    }
+                    if (maqueen.readPatrol(maqueen.Patrol.PatrolLeft) == 1 && maqueen.readPatrol(maqueen.Patrol.PatrolRight) == 0) {
+                        left(1)
+                        basic.pause(50)
+                    } else {
+                        right(1)
+                        basic.pause(50)
+                    }
                 }
             }
         }
@@ -92,4 +98,12 @@ basic.showIcon(IconNames.Yes)
 basic.forever(function () {
     basic.pause(1)
     time += 1 / 1000
+    while (true) {
+        maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOn)
+        basic.pause(100)
+        maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOn)
+        maqueen.writeLED(maqueen.LED.LEDLeft, maqueen.LEDswitch.turnOff)
+        basic.pause(100)
+        maqueen.writeLED(maqueen.LED.LEDRight, maqueen.LEDswitch.turnOff)
+    }
 })
